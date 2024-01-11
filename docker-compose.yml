@@ -6,7 +6,7 @@ networks:
 
 services:
   app:
-    image: ghcr.io/vityakut/docker-compose-laravel:latest
+    image: ghcr.io/vityakut/docker-compose-laravel/nginx:latest
     build:
       context: ./dockerfiles
       dockerfile: nginx.dockerfile
@@ -28,6 +28,8 @@ services:
     tty: true
     ports:
       - "3306:3306"
+    volumes:
+      - './mysql:/var/lib/mysql:delegated'
     environment:
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
@@ -39,12 +41,10 @@ services:
       - laravel
 
   php:
+    image: ghcr.io/vityakut/docker-compose-laravel/php:latest
     build:
       context: ./dockerfiles
       dockerfile: php.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
     ports:
       - "9000:9000"
     volumes:
@@ -64,9 +64,6 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: php.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -89,12 +86,10 @@ services:
       - laravel
 
   artisan:
+    image: ghcr.io/vityakut/docker-compose-laravel/php:latest
     build:
       context: ./dockerfiles
       dockerfile: php.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
     volumes:
       - ./src:/var/www/html:delegated
     depends_on:
