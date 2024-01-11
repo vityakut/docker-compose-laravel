@@ -6,6 +6,7 @@ networks:
 
 services:
   app:
+    image: ghcr.io/vityakut/docker-compose-laravel:latest
     build:
       context: ./dockerfiles
       dockerfile: nginx.dockerfile
