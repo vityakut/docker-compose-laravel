@@ -96,6 +96,7 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
 
   build-php:
+    needs: [checkout, login]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -130,6 +131,7 @@ jobs:
 
 
   build-php-root:
+    needs: [checkout, login]
     runs-on: ubuntu-latest
     permissions:
       contents: read
