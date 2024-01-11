@@ -47,6 +47,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: docker-artifacts
+          path: 
+            dockerfiles
       
 
   login:
