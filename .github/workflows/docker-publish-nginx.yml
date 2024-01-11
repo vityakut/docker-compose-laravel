@@ -43,6 +43,7 @@ jobs:
       
 
   login:
+    needs: checkout
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -61,6 +62,7 @@ jobs:
 
 
   build-nginx:
+    needs: [checkout, login]
     runs-on: ubuntu-latest
     permissions:
       contents: read
