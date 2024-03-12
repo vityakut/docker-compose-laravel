@@ -89,7 +89,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_PATH }}/${{ matrix.image }}
           tags: |
-            type=schedule
+            type=raw,value=latest
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
