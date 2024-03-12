@@ -22,9 +22,13 @@ env:
   IMAGE_PATH: ${{ github.repository }}
 
 jobs:
-  bumb:
+  bump:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
@@ -82,7 +86,7 @@ jobs:
     strategy:
       matrix:
         image: [nginx, php, php.root]
-    needs: [checkout, login]
+    needs: [checkout, login, bump]
     runs-on: ubuntu-latest
     permissions:
       contents: read
