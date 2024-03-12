@@ -14,13 +14,12 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "master" ]
-
+  
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_PATH: ${{ github.repository }}
-
 
 jobs:
   checkout:
@@ -48,6 +47,7 @@ jobs:
             dockerfiles
       
   login:
+    if: github.repository == 'vityakut/docker-compose-laravel'
     runs-on: ubuntu-latest
     permissions:
       contents: read
