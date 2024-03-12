@@ -25,10 +25,7 @@ jobs:
   bump:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
+    permissions: write-all
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
