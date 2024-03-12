@@ -65,7 +65,7 @@ jobs:
   build:
     strategy:
       matrix:
-        image: [nginx, php, php-root]
+        image: [nginx, php, php.root]
     needs: [checkout, login]
     runs-on: ubuntu-latest
     permissions:
